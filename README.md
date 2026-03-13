@@ -1,22 +1,26 @@
-# AI Ops Log Monitoring for Node.js (Open Source)
+# AIOps Node.js Log Monitor 🚀
 
-AI-powered log monitoring system for Node.js microservices running on PM2.
+![Node.js](https://img.shields.io/badge/Node.js-18-green)
+![PM2](https://img.shields.io/badge/PM2-Process_Manager-blue)
+![License](https://img.shields.io/badge/license-MIT-yellow)
+![DevOps](https://img.shields.io/badge/DevOps-AIOps-orange)
+![Machine Learning](https://img.shields.io/badge/ML-Anomaly_Detection-purple)
+![Status](https://img.shields.io/badge/status-active-success)
+![GitHub stars](https://img.shields.io/github/stars/Viswanath-DevOps-1/aiops-nodejs-monitor)
+![GitHub forks](https://img.shields.io/github/forks/Viswanath-DevOps-1/aiops-nodejs-monitor)
+![GitHub issues](https://img.shields.io/github/issues/Viswanath-DevOps-1/aiops-nodejs-monitor)
 
-This project detects:
+A lightweight **AIOps log monitoring system** for Node.js microservices running with PM2.
 
-- Error spikes
-- Service health degradation
-- Log anomalies
-- Real-time incidents
+This tool monitors application logs in **real time**, detects **error spikes**, calculates **service health**, performs **machine learning–based anomaly detection**, and sends automated alerts to Slack.
 
-Alerts are automatically sent to Slack.
-
-Built using fully open-source tools.
+This project demonstrates **DevOps → AIOps → MLOps monitoring architecture using open-source tools**.
 
 ---
 
 # Architecture
 
+```
 PM2 Logs
 /home/admin/.pm2/logs
         ↓
@@ -28,47 +32,113 @@ Error Spike Detection
         ↓
 Service Health Scoring
         ↓
-Anomaly Detection (Python ML)
+ML Anomaly Detection
         ↓
-Slack Alerts
+Slack Alert System
+```
 
 ---
 
 # Features
 
-Real-time PM2 log monitoring
+* Real-time PM2 log monitoring
+* Error spike detection
+* Service health scoring
+* ML-based anomaly detection
+* Automated Slack alerts
+* Multi-service monitoring
+* Lightweight architecture
+* Fully open-source implementation
 
-Error spike detection
+---
 
-Service health scoring
+# Machine Learning Capabilities
 
-Log anomaly detection
+This project includes **basic ML-based anomaly detection** for identifying unusual error patterns.
 
-Slack alert integration
+ML features include:
 
-Multi-service monitoring
+* Statistical anomaly detection using historical log patterns
+* Error spike detection using dynamic thresholds
+* Predictive monitoring for abnormal service behaviour
+* Early incident detection using log pattern analysis
 
-Lightweight and production ready
+The system can be extended to integrate with advanced ML pipelines for **predictive incident detection**.
 
 ---
 
 # Tech Stack
 
-Node.js
+* Node.js
+* PM2
+* Chokidar (file watcher)
+* Axios (HTTP client)
+* Dotenv (environment variables)
+* Slack Webhooks
+* Simple Statistics (ML anomaly detection)
 
-PM2
+---
 
-Python
+# Project Structure
 
-Scikit-learn
+```
+aiops-nodejs-monitor
+│
+├── config
+│   └── config.js
+│
+├── services
+│   ├── logWatcher.js
+│   ├── logParser.js
+│   ├── spikeDetector.js
+│   ├── anomalyDetector.js
+│   ├── healthScore.js
+│   └── slackNotifier.js
+│
+├── utils
+│   └── logger.js
+│
+├── monitor.js
+├── ecosystem.config.js
+├── package.json
+├── .env.example
+└── README.md
+```
 
-Chokidar
+---
 
-Axios
+# Folder Description
 
-Slack Webhooks
+### config/
 
-All components are open source.
+Contains configuration settings such as:
+
+* Log paths
+* Slack webhook configuration
+* Error pattern rules
+
+### services/
+
+Core monitoring services including:
+
+* **logWatcher.js** → Watches PM2 logs
+* **logParser.js** → Parses log entries
+* **spikeDetector.js** → Detects error spikes
+* **anomalyDetector.js** → ML anomaly detection
+* **healthScore.js** → Calculates service health
+* **slackNotifier.js** → Sends alerts to Slack
+
+### utils/
+
+Utility helper functions used by the monitoring system.
+
+### monitor.js
+
+Main entry point that starts the monitoring process.
+
+### ecosystem.config.js
+
+Configuration file used by PM2 to run the monitoring service in production.
 
 ---
 
@@ -76,112 +146,101 @@ All components are open source.
 
 Clone the repository
 
-git clone https://github.com/yourname/aiops-nodejs-monitor.git
+```
+git clone https://github.com/Viswanath-DevOps-1/aiops-nodejs-monitor.git
+```
 
+Navigate to the project directory
+
+```
 cd aiops-nodejs-monitor
+```
 
 Install dependencies
 
+```
 npm install
+```
 
 ---
 
-# Configure Environment
+# Environment Configuration
 
-Create .env file
+Create environment configuration file
 
+```
 cp .env.example .env
+```
 
-Edit and add your Slack webhook
+Edit `.env` and add your Slack webhook URL.
 
-SLACK_WEBHOOK=https://hooks.slack.com/services/XXXXX
+```
+SLACK_WEBHOOK=https://hooks.slack.com/services/XXXX/XXXX/XXXX
+```
 
 ---
 
-# Run Log Monitor
+# Running the Application
 
+Run using Node.js
+
+```
 node monitor.js
+```
 
-Or run with PM2
+Run using PM2 (recommended)
 
+```
 pm2 start ecosystem.config.js
+```
+
+Check running processes
+
+```
+pm2 status
+```
 
 ---
 
 # Example Slack Alert
 
+When an error occurs in logs, Slack receives an alert automatically.
+
+Example alert:
+
+```
 🚨 AIOps Alert
 
-Service: app-workflow-api  
+Service: app-workflow-api-error.log
 Issue: RabbitMQ connection timeout
 
-Error spike detected: 22 errors in last minute
-
----
-
-# Anomaly Detection (Optional AI)
-
-Install Python dependencies
-
-pip install scikit-learn numpy
-
-Run anomaly detection service
-
-python ai/anomaly.py
-
-The AI model detects abnormal log patterns and alerts automatically.
-
----
-
-# Folder Explanation
-
-config
-
-Application configuration files
-
-services
-
-Core monitoring logic
-
-ai
-
-Machine learning anomaly detection
-
-utils
-
-Helper utilities
-
-monitor.js
-
-Main application entry
+Error spike detected: 15 errors in last minute
+```
 
 ---
 
 # Use Cases
 
-DevOps log monitoring
-
-Microservice observability
-
-AIOps experimentation
-
-MLOps learning projects
-
-Production Node.js monitoring
+* Node.js microservice monitoring
+* DevOps log observability
+* Incident detection automation
+* Learning AIOps concepts
+* Infrastructure monitoring experiments
+* ML-powered anomaly detection for logs
 
 ---
 
 # Future Improvements
 
-Grafana dashboards
+Possible enhancements for this project:
 
-Prometheus metrics
-
-Kubernetes log monitoring
-
-Root cause detection
-
-AI-based incident prediction
+* Advanced ML anomaly detection models
+* Grafana observability dashboards
+* Prometheus metrics integration
+* Kubernetes log monitoring
+* Root cause analysis
+* Predictive incident detection
+* AI-based log clustering
 
 ---
 
@@ -189,12 +248,14 @@ AI-based incident prediction
 
 MIT License
 
-Open source and free to use.
+This project is open-source and free to use.
 
 ---
 
 # Author
 
-DevOps / AIOps Project
+Viswanath Reddy
+Senior DevOps Engineer
 
-Built for learning AI infrastructure and modern DevOps monitoring.
+GitHub
+https://github.com/Viswanath-DevOps-1
